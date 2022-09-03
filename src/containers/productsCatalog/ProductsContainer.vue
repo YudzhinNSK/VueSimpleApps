@@ -1,6 +1,6 @@
 <template>
   <div class='products_catalog'>
-      <div v-if='sellType' class='gridItem sellTypeGridItem'>
+      <div v-if='sellType !== SellType.NONE' class='gridItem sellTypeGridItem'>
         {{sellType}}
       </div>
       <div v-for='(item, index) in products' :key='index' :class='`gridItem ${index === 0 && "bigGridItem"}`'>
