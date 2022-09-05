@@ -10,6 +10,7 @@
       density='compact'
       v-model='input'
       clearable
+      placeholder='Search...'
       @change='handleUpdateValue'
       @click:clear='handleUpdateValue'
     ></VTextField>

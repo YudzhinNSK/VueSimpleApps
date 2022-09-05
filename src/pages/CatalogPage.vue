@@ -1,5 +1,5 @@
 <template>
-  <div class='flex flex-col w-full'>
+  <div class='flex flex-col w-full max-w-[1100px]'>
     <FiltersContainer @updateProductsList='handleUpdateProductsList'/>
     <ProductsContainer
       :sell-type='sellType'
@@ -18,10 +18,11 @@ import { ProductsQuery } from '../services/types/productsQuery'
 import { ref, Ref } from 'vue'
 
 const mockData: Product[] = [...productsList]
-const sellType: Ref<SellType> = ref(SellType.BESTSELLER)
+const sellType: Ref<SellType> = ref(SellType.NONE)
 
 const handleUpdateProductsList = (query: ProductsQuery) => {
   console.log(query)
+  sellType.value = query.sellType ? query.sellType : SellType.NONE
 }
 
 </script>

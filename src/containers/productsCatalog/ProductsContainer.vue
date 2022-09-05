@@ -1,10 +1,14 @@
 <template>
   <div class='products_catalog'>
-      <div v-if='sellType !== SellType.NONE' class='gridItem sellTypeGridItem'>
-        {{sellType}}
+      <div class='gridItem sellTypeGridItem'>
+        <div class='font-bold text-4xl uppercase h-full'>
+          {{`${sellType !== SellType.NONE ? sellType : 'Founded'} ${products.length}`}}
+        </div>
       </div>
       <div v-for='(item, index) in products' :key='index' :class='`gridItem ${index === 0 && "bigGridItem"}`'>
-          {{item.name}}
+          <ProductCard
+            :product='item'
+          />
       </div>
   </div>
 </template>
@@ -14,6 +18,7 @@
 import { PropType } from 'vue'
 import { Product } from '../../entities/product'
 import { SellType } from '../../entities/sellType'
+import ProductCard from '../../components/ProductCard.vue'
 
 const props = defineProps({
   sellType: {
