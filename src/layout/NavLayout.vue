@@ -1,43 +1,37 @@
 <template>
-  <div
-    style='
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-y: scroll;
-      margin-bottom: 40px;
-    '
-  >
-    <div class='header'>
-      <div class='content_wrapper content_wrapper_border'>
-        <div class='shop_name black_text'>
-          S—Shop
-        </div>
-        <div class='links_container'>
-          <div v-for='item in links' :key='item.route'
-               :class="`header_button ${route.name === item.route && 'active_button'}`">
-            <RouterLink
-              :to='item.route'
-            >
-              {{ item.label }}
-            </RouterLink>
-          </div>
-        </div>
-        <div class='header_button'>
-          Basket
+  <div class='header'>
+    <div class='content_wrapper content_wrapper_border'>
+      <div class='shop_name black_text'>
+        S—Shop
+      </div>
+      <div class='links_container'>
+        <div v-for='item in links' :key='item.route'
+             :class="`header_button ${route.name === item.route && 'active_button'}`">
+          <RouterLink
+            :to='item.route'
+          >
+            {{ item.label }}
+          </RouterLink>
         </div>
       </div>
+      <div :class="`header_button ${openBasket && 'active_button'}`" @click='handleOpenBasket'>
+        {{ `Basket (${store.state.basket.length})` }}
+      </div>
     </div>
-    <div class='body_content_wrapper'>
-      <router-view />
-    </div>
+    <BasketContainer
+      :is-basket-open='openBasket'
+      @closeBasket='handleOpenBasket'
+    />
   </div>
 </template>
 
 <script setup lang='ts'>
 import { RouterLink, useRoute } from 'vue-router'
-import { computed, PropType, watch } from 'vue'
+import { computed, PropType, ref, watch } from 'vue'
 import { MenuLink } from '../components/navigation/MenuLinks'
+import {useStore} from 'vuex'
+import {key} from '../store/store'
+import BasketContainer from '../containers/BasketContainer.vue'
 
 const props = defineProps({
   links: {
@@ -46,6 +40,15 @@ const props = defineProps({
     default: () => [],
   },
 })
+
+
+const store = useStore(key)
+
+const openBasket = ref(false)
+
+const handleOpenBasket = () => {
+  openBasket.value = !openBasket.value
+}
 
 const route = useRoute()
 

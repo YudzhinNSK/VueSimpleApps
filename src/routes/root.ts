@@ -13,19 +13,7 @@ export const router = createRouter({
   routes: [
     {
       path: '/',
-      component: NavLayout,
-      props:{
-        links: [
-          {
-            label: "Catalog",
-            route: ShopNamedRoutes.CATALOG,
-          },
-          {
-            label: "Profile",
-            route: ShopNamedRoutes.PROFILE,
-          }
-        ] as MenuLink[]
-      },
+      props:{},
       children: [
         {
           path: "catalog",

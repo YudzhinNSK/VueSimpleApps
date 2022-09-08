@@ -5,9 +5,10 @@
           {{`${sellType !== SellType.NONE ? sellType : 'Founded'} ${products.length}`}}
         </div>
       </div>
-      <div v-for='(item, index) in products' :key='index' :class='`gridItem ${index === 0 && "bigGridItem"}`'>
+      <div v-for='(item, index) in products' :key='item.id' :class='`gridItem ${index === 0 && "bigGridItem"}`'>
           <ProductCard
             :product='item'
+            @addToCard='handleAddToCard'
           />
       </div>
   </div>
@@ -15,7 +16,7 @@
 
 <script setup lang='ts'>
 
-import { PropType } from 'vue'
+import { computed, defineEmits, PropType } from 'vue'
 import { Product } from '../../entities/product'
 import { SellType } from '../../entities/sellType'
 import ProductCard from '../../components/ProductCard.vue'
@@ -31,6 +32,14 @@ const props = defineProps({
     default: () => []
   }
 })
+
+const emit = defineEmits<{
+  (e: 'addProductToCard', item: Product): void;
+}>()
+
+const handleAddToCard = (data: Product) => {
+  emit('addProductToCard', data)
+}
 
 </script>
 

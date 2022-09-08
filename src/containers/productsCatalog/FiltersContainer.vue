@@ -32,7 +32,6 @@
           :items='saleTypesList'
           item-title='label'
           item-value='value'
-          clearable
           hide-details
           single-line
           density='compact'
