@@ -15,8 +15,14 @@ export class ApiPostCrudService implements IPostQueryService {
 
     let url = `${this._serviceUrl}/posts`
 
-    if(query.userId){
-      url += `?userId=${query.userId}`
+    if(query.userIds?.length){
+      query.userIds.forEach((item, index) => {
+        if(index === 0){
+          url += `?userId=${item}`
+        }else{
+          url += `&userId=${item}`
+        }
+      })
     }
 
     const response = await fetch(url)

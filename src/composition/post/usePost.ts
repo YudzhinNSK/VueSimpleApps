@@ -37,15 +37,17 @@ export function usePost(){
       return
     }
 
-    const authorId = authors.value.find((author) => author.name.includes(name))?.id || null
+    const authorIds = authors.value.filter((author) => author.name.toLowerCase().includes(name.toLowerCase())).map((item) => item.id) || null
 
-    if(!authorId) {
+    console.log(authorIds)
+
+    if(!authorIds) {
       postsList.value = []
       return
     }
 
     query.value = {
-      userId: authorId
+      userIds: authorIds
     }
 
     await loadPosts()
