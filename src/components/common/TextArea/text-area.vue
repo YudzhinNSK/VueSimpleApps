@@ -59,12 +59,6 @@ const handleInputEvent = (event: InputEvent): void => {
       border-bottom: 2px solid #6f6f6f;
     }
   }
-  //
-  //  .custom-input {
-  //    background-color: #d8d8d8;
-  //    border-bottom: 2px solid #6f6f6f;
-  //  }
-  //}
 
   .custom-label {
     position: absolute;
@@ -121,11 +115,6 @@ const handleInputEvent = (event: InputEvent): void => {
       transparent 5px,
       #e3e3e3 23px);
 
-
-    //&:hover {
-    //  background-color: #d8d8d8;
-    //  border-bottom: 2px solid #6f6f6f;
-    //}
 
     &:focus-visible {
       outline: none;
