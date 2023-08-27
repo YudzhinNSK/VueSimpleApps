@@ -145,7 +145,7 @@ onMounted(fetchUsersList)
       justify-content: space-between;
 
       min-height: 40px;
-      border-bottom: 1px solid #f2f2f2;
+      border-bottom: 1px solid var(--border-color);
 
       &:last-child {
         border-bottom: none;
@@ -171,18 +171,18 @@ onMounted(fetchUsersList)
           cursor: pointer;
 
           &.--edit {
-            color: #dadada;
+            color: var(--element-color-unactive);
 
             &:hover {
-              color: #1f1f1f;
+              color: var(--text-color-primary);
             }
           }
 
           &.--delete{
-            color: #B4383840;
+            color: var(--elemenet-color-delete-unactive);
 
             &:hover {
-              color: #B43838
+              color: var(--elemenet-color-delete-active);
             }
           }
         }
